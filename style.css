@@ -1,0 +1,16 @@
+#highscore {
+    float: left;
+}
+
+#timer {
+    float: right;
+}
+
+.container {
+    padding: 3rem;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
