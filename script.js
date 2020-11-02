@@ -21,6 +21,7 @@ startQuiz.addEventListener("click", function(){
     startQuiz.classList.add("hide");
 });
 
+// Function for timer countdown
 function countdown(){
     timerCountdown = 75;
     var countdown = setInterval(function(){
@@ -30,6 +31,50 @@ function countdown(){
         if(timerCountdown === 0){
             clearInterval(countdown);
             timer.textContent = "Time: 0";
+            return 0;
         }
     }, 1000);
 }
+
+// Array that holds each question
+var questions = [questionOne(), questionTwo()];
+
+// Quiz questions
+function questionOne() {
+    question.textContent = "Commonly used data types DO NOT include";
+    answerOne.textContent = "strings";
+    answerTwo.textContent = "booleans";
+    answerThree.textContent = "alerts";
+    answerFour.textContent = "numbers";
+}
+
+function questionTwo() {
+    question.textContent = "The condition in an if/else statement is enclosed within _________";
+    answerOne.textContent = "quotes";
+    answerTwo.textContent = "curly brackets";
+    answerThree.textContent = "parenthesis";
+    answerFour.textContent = "square brackets";
+}
+
+// Runs the quiz
+function quizRunner(){
+    question.classList.remove("hide");
+    answerOne.classList.remove("hide");
+    answerTwo.classList.remove("hide");
+    answerThree.classList.remove("hide");
+    answerFour.classList.remove("hide");
+}
+
+// Resets the page to retake the quiz
+function reset() {
+    header.classList.remove("hide");
+    rules.classList.remove("hide");
+    startQuiz.classList.remove("hide");
+
+    question.classList.add("hide");
+    answerOne.classList.add("hide");
+    answerTwo.classList.add("hide");
+    answerThree.classList.add("hide");
+    answerFour.classList.add("hide");
+}
+
