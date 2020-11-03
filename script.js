@@ -36,7 +36,7 @@ function countdown(){
         timer.textContent = "Time: " + timerCountdown;
         timerCountdown--;
 
-        if(timerCountdown === 0){
+        if(timerCountdown <= 0){
             clearInterval(countdown);
             timer.textContent = "Time: 0";
         }
@@ -44,24 +44,29 @@ function countdown(){
 }
 
 // Array that holds each question
-var questions = [
-    {
-        question: "Commonly used data types DO NOT include",
-        choiceA: "strings",
-        choiceB: "booleans",
-        choiceC: "alerts",
-        choiceD: "numbers",
-        answer: "alerts"
-    },
-    {
-        question: "The condition in an if/else statement is enclosed within _________",
-        choiceA: "quotes",
-        choiceB: "curly brackets",
-        choiceC: "parenthesis",
-        choiceD: "square brackets",
-        answer: "parenthesis"
-    }
-];
+var questions = [];
+
+// Initializes questions array with it's objects
+function initializeQuestions(){
+    questions = [
+        {
+            question: "Commonly used data types DO NOT include",
+            choiceA: "strings",
+            choiceB: "booleans",
+            choiceC: "alerts",
+            choiceD: "numbers",
+            answer: "alerts"
+        },
+        {
+            question: "The condition in an if/else statement is enclosed within _________",
+            choiceA: "quotes",
+            choiceB: "curly brackets",
+            choiceC: "parenthesis",
+            choiceD: "square brackets",
+            answer: "parenthesis"
+        }
+    ];
+}
 
 // Runs the quiz
 function quizRunner(){
@@ -72,6 +77,7 @@ function quizRunner(){
     answerFour.classList.remove("hide");
 
     score = 0;
+    initializeQuestions();
 
     getQuestion();
 }
@@ -80,7 +86,9 @@ var questionsIndex = 0;
 
 // Grabs question from the array
 function getQuestion(){
-    if(questions.length === 0){
+    if(questions.length === 0 || timerCountdown <= 0){
+        timerCountdown = 0;
+        reset();
         localStorage.setItem("score", score);
     }
     else{
@@ -92,11 +100,11 @@ function getQuestion(){
         answerThree.textContent = currentQuestion.choiceC;
         answerFour.textContent = currentQuestion.choiceD;
 
-        // questions.splice(questionsIndex, 1);
         userInput = true;
     }
 }
 
+// Allows for user answer input
 for(var i = 1; i < choices.length; i++){
     choices[i].addEventListener("click", function(event){
         if(!userInput){
@@ -110,18 +118,17 @@ for(var i = 1; i < choices.length; i++){
         console.log(questionsIndex);
         if(userChoice === questions[questionsIndex].answer){
             score++;
+            console.log("Score:" + score);
             questions.splice(questionsIndex, 1);
+            getQuestion();
         }
         else{
             timerCountdown -= 10;
             questions.splice(questionsIndex, 1);
+            getQuestion();
         }
-
-
     })
 }
-
-
 
 // Resets the page to retake the quiz
 function reset() {
