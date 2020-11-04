@@ -16,6 +16,8 @@ var answerTwo = document.querySelector("#answer-two");
 var answerThree = document.querySelector("#answer-three");
 var answerFour = document.querySelector("#answer-four");
 var choices = container.querySelectorAll("button");
+var hr = document.querySelector("#hr");
+var popUp = document.querySelector("#popup");
 var score = 0;
 var userInput = false;
 
@@ -31,10 +33,18 @@ var scoreSheet = document.querySelector("#highscore-sheet");
 var goBack = document.querySelector("#go-back");
 var clearScores = document.querySelector("#clear");
 
+init();
+
 console.log(window);
 console.log(scoreSheet);
 console.log(goBack);
 console.log(clearScores);
+
+// Event that initializes site
+function init(){
+    reset();
+    renderHighscores();
+}
 
 // Event that starts the quiz
 startQuiz.addEventListener("click", function(event){
@@ -91,6 +101,30 @@ function initializeQuestions(){
             choiceC: "parenthesis",
             choiceD: "square brackets",
             answer: "parenthesis"
+        },
+        {
+            question: "Arrays in JavaScript can be used to store _________",
+            choiceA: "numbers and strings",
+            choiceB: "other arrays",
+            choiceC: "booleans",
+            choiceD: "all of the above",
+            answer: "all of the above"
+        },
+        {
+            question: "String values must be enclosed in _________ when being assigned to variables",
+            choiceA: "quotes",
+            choiceB: "commas",
+            choiceC: "curly brackets",
+            choiceD: "parentheses",
+            answer: "quotes"
+        },
+        {
+            question: "A very useful tool used during development and debugging for printing content to the debugger is",
+            choiceA: "terminal/bash",
+            choiceB: "console.log",
+            choiceC: "for loops",
+            choiceD: "JavaScript",
+            answer: "console.log"
         }
     ];
 }
@@ -111,11 +145,42 @@ function quizRunner(){
 
 var questionsIndex = 0;
 
+// Displays correct
+function correct(){
+    popUp.textContent = "Correct";
+
+    setTimeout(function(){
+        hr.classList.remove("hide");
+        popUp.classList.remove("hide"); 
+    }, 0);
+
+    setTimeout(function(){
+        hr.classList.add("hide");
+        popUp.classList.add("hide"); 
+    }, 500);
+}
+
+// Displays incorrect
+function incorrect(){
+    popUp.textContent = "Incorrect";
+
+    setTimeout(function(){
+        hr.classList.remove("hide");
+        popUp.classList.remove("hide"); 
+    }, 0);
+
+    setTimeout(function(){
+        hr.classList.add("hide");
+        popUp.classList.add("hide"); 
+    }, 500);
+}
+
 // Grabs question from the array
 function getQuestion(){
     if(questions.length === 0 || timerCountdown <= 0){
         timerCountdown = 0;
         getHighscore();
+        renderHighscores();
     }
     else{
         questionsIndex = Math.floor(Math.random() * questions.length);
@@ -146,11 +211,13 @@ for(var i = 1; i < choices.length; i++){
             score++;
             console.log("Score:" + score);
             questions.splice(questionsIndex, 1);
+            correct();
             getQuestion();
         }
         else{
             timerCountdown -= 10;
             questions.splice(questionsIndex, 1);
+            incorrect();
             getQuestion();
         }
     })
@@ -189,7 +256,8 @@ function viewHighscores() {
 // Clears highscores
 function clearHighscores(){
     for(var i = 0; i < scoreBoard.length; i++){
-        scoreBoard.pop();
+        scoreBoard.splice(i, 1);
+        i--;
     }
     localStorage.setItem("score", JSON.stringify(scoreBoard));
     renderHighscores();
@@ -216,6 +284,9 @@ function reset() {
     header.classList.remove("hide");
     rules.classList.remove("hide");
     startQuiz.classList.remove("hide");
+    
+    hr.classList.add("hide");
+    popUp.classList.add("hide");
 
     form.classList.add("hide");
 
