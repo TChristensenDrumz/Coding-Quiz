@@ -6,7 +6,7 @@
     float: right;
 }
 
-.container {
+.container, .score-form {
     padding: 3rem;
     text-align: center;
 }
@@ -14,3 +14,4 @@
 .hide {
     display: none;
 }
+

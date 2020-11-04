@@ -14,9 +14,15 @@ var answerOne = document.querySelector("#answer-one");
 var answerTwo = document.querySelector("#answer-two");
 var answerThree = document.querySelector("#answer-three");
 var answerFour = document.querySelector("#answer-four");
-var choices = document.querySelectorAll("button");
+var choices = container.querySelectorAll("button");
 var score = 0;
 var userInput = false;
+
+// Variables for highscore
+var form = document.querySelector("#form");
+var highscoreInitials = document.querySelector("#highscore-initials");
+var submitScore = document.querySelector("#submit-score");
+var scoreBoard = [];
 
 // Event that starts the quiz
 startQuiz.addEventListener("click", function(event){
@@ -88,8 +94,7 @@ var questionsIndex = 0;
 function getQuestion(){
     if(questions.length === 0 || timerCountdown <= 0){
         timerCountdown = 0;
-        reset();
-        localStorage.setItem("score", score);
+        getHighscore();
     }
     else{
         questionsIndex = Math.floor(Math.random() * questions.length);
@@ -129,6 +134,30 @@ for(var i = 1; i < choices.length; i++){
         }
     })
 }
+
+// Shows highscore elements
+function getHighscore(){
+    question.classList.add("hide");
+    answerOne.classList.add("hide");
+    answerTwo.classList.add("hide");
+    answerThree.classList.add("hide");
+    answerFour.classList.add("hide");
+
+    form.classList.remove("hide");
+}
+
+// Submits highscore to local storage and scoreboard
+var initials = "";
+submitScore.addEventListener("click", function(event){
+    event.preventDefault();
+    initials = highscoreInitials.value;
+    scoreBoard.push({
+        userInitials: initials,
+        userScore: score
+    });
+    console.log(scoreBoard);
+
+});
 
 // Resets the page to retake the quiz
 function reset() {
