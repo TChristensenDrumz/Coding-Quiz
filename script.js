@@ -297,10 +297,25 @@ function reset() {
 function renderHighscores(){
     scoreSheet.innerHTML = "";
     scoreBoard = JSON.parse(localStorage.getItem("score"));
+    sort();
     for(var i = 0; i < scoreBoard.length; i++){
         var listItem = document.createElement("li");
         listItem.textContent = scoreBoard[i].userInitials + " - " + scoreBoard[i].userScore;
         scoreSheet.appendChild(listItem); 
+    }
+}
+
+// Sorts scoreBoard array
+function sort(){
+    var temp;
+    for (var i = 1; i < scoreBoard.length; i++) {
+        for (var j = i; j > 0; j--) {
+            if (scoreBoard[j].userScore > scoreBoard [j - 1].userScore) {
+                temp = scoreBoard[j];
+                scoreBoard[j] = scoreBoard[j - 1];
+                scoreBoard[j - 1] = temp;
+            }
+        }
     }
 }
 
