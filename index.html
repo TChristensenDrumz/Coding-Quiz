@@ -7,7 +7,7 @@
     <title>Code Quiz</title>
 </head>
 <body>
-    <a href="highscores.html"><h3 id="highscore">View Highscores</h3></a>
+    <h3 id="highscore" style="color:rgb(70, 17, 156)">View Highscores</h3>
     <h3 id="timer">Time: 0</h3>
     <div class="container">
        <h1 id="header">Coding Quiz Challenge</h1>
@@ -29,6 +29,13 @@
                 <input type="text" placeholder="Your name here" name="highscore-initials" id="highscore-initials" />
                 <button  id="submit-score">Submit</button>
             </form>
+        </div>
+
+        <div class="highscore-viewer hide" id="viewer">
+            <h1>Highscores</h1>
+            <ul id="highscore-sheet"></ul>
+            <button id="go-back">Go Back</button>
+            <button id="clear">Clear Highscores</button>
         </div>
 
    </div> 

@@ -1,4 +1,5 @@
 // Variables before quiz starts
+var view = document.querySelector("#highscore");
 var container = document.querySelector(".container");
 var header = document.querySelector("#header");
 var rules = document.querySelector("#rules");
@@ -24,6 +25,17 @@ var highscoreInitials = document.querySelector("#highscore-initials");
 var submitScore = document.querySelector("#submit-score");
 var scoreBoard = [];
 
+// Variables for highscore viewer
+var viewer = document.querySelector("#viewer");
+var scoreSheet = document.querySelector("#highscore-sheet");
+var goBack = document.querySelector("#go-back");
+var clearScores = document.querySelector("#clear");
+
+console.log(window);
+console.log(scoreSheet);
+console.log(goBack);
+console.log(clearScores);
+
 // Event that starts the quiz
 startQuiz.addEventListener("click", function(event){
     event.stopPropagation();
@@ -34,6 +46,15 @@ startQuiz.addEventListener("click", function(event){
     countdown();
     quizRunner();
 });
+
+// Event to view highscores
+view.addEventListener("click", viewHighscores);
+
+// Event to go back to quiz
+goBack.addEventListener("click", reset);
+
+// Event to clear highscores
+clearScores.addEventListener("click", clearHighscores);
 
 // Function for timer countdown
 function countdown(){
@@ -146,6 +167,34 @@ function getHighscore(){
     form.classList.remove("hide");
 }
 
+// Shows highscore viewer
+function viewHighscores() {
+    view.classList.add("hide");
+    
+    question.classList.add("hide");
+    answerOne.classList.add("hide");
+    answerTwo.classList.add("hide");
+    answerThree.classList.add("hide");
+    answerFour.classList.add("hide");
+
+    header.classList.add("hide");
+    rules.classList.add("hide");
+    startQuiz.classList.add("hide");
+
+    form.classList.add("hide");
+
+    viewer.classList.remove("hide");
+}
+
+// Clears highscores
+function clearHighscores(){
+    for(var i = 0; i < scoreBoard.length; i++){
+        scoreBoard.pop();
+    }
+    localStorage.setItem("score", JSON.stringify(scoreBoard));
+    renderHighscores();
+}
+
 // Submits highscore to local storage and scoreboard
 var initials = "";
 submitScore.addEventListener("click", function(event){
@@ -156,19 +205,31 @@ submitScore.addEventListener("click", function(event){
         userScore: score
     });
     console.log(scoreBoard);
-
+    localStorage.setItem("score", JSON.stringify(scoreBoard));
+    renderHighscores();
+    viewHighscores();
 });
 
 // Resets the page to retake the quiz
 function reset() {
+    view.classList.remove("hide");
     header.classList.remove("hide");
     rules.classList.remove("hide");
     startQuiz.classList.remove("hide");
 
-    question.classList.add("hide");
-    answerOne.classList.add("hide");
-    answerTwo.classList.add("hide");
-    answerThree.classList.add("hide");
-    answerFour.classList.add("hide");
+    form.classList.add("hide");
+
+    viewer.classList.add("hide");
+}
+
+// Renders highscores on the highscore page
+function renderHighscores(){
+    scoreSheet.innerHTML = "";
+    scoreBoard = JSON.parse(localStorage.getItem("score"));
+    for(var i = 0; i < scoreBoard.length; i++){
+        var listItem = document.createElement("li");
+        listItem.textContent = scoreBoard[i].userInitials + " - " + scoreBoard[i].userScore;
+        scoreSheet.appendChild(listItem); 
+    }
 }
 
