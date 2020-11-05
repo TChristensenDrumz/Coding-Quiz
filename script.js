@@ -295,13 +295,15 @@ function reset() {
 
 // Renders highscores on the highscore page
 function renderHighscores(){
-    scoreSheet.innerHTML = "";
-    scoreBoard = JSON.parse(localStorage.getItem("score"));
-    sort();
-    for(var i = 0; i < scoreBoard.length; i++){
-        var listItem = document.createElement("li");
-        listItem.textContent = scoreBoard[i].userInitials + " - " + scoreBoard[i].userScore;
-        scoreSheet.appendChild(listItem); 
+    if(localStorage.getItem("score") === true){
+        scoreSheet.innerHTML = "";
+        scoreBoard = JSON.parse(localStorage.getItem("score"));
+        sort();
+        for(var i = 0; i < scoreBoard.length; i++){
+            var listItem = document.createElement("li");
+            listItem.textContent = scoreBoard[i].userInitials + " - " + scoreBoard[i].userScore;
+            scoreSheet.appendChild(listItem); 
+        }
     }
 }
 
