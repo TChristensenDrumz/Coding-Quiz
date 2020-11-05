@@ -296,7 +296,7 @@ function reset() {
 
 // Renders highscores on the highscore page
 function renderHighscores(){
-    if(localStorage.getItem("score") === true){
+    if(localStorage.getItem("score") !== null){
         scoreSheet.innerHTML = "";
         scoreBoard = JSON.parse(localStorage.getItem("score"));
         sort();
