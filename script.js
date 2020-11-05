@@ -52,6 +52,7 @@ startQuiz.addEventListener("click", function(event){
     header.classList.add("hide");
     rules.classList.add("hide");
     startQuiz.classList.add("hide");
+    view.classList.add("hide");
 
     countdown();
     quizRunner();
