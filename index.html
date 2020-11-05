@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Code Quiz</title>
 </head>
 <body>
-    <h3 id="highscore" style="color:rgb(70, 17, 156)">View Highscores</h3>
+    <h3 id="highscore" style="color:rgb(12, 237, 245)">View Highscores</h3>
     <h3 id="timer">Time: 0</h3>
     <div class="container">
        <h1 id="header">Coding Quiz Challenge</h1>
@@ -18,16 +19,16 @@
            time by 10 seconds!
        </p>
        <button id="start-quiz">Start Quiz</button>
-       <button class="hide" id="answer-one"></button>
-       <button class="hide" id="answer-two"></button>
-       <button class="hide" id="answer-three"></button>
-       <button class="hide" id="answer-four"></button>
+       <div class="answers"><button class="hide" id="answer-one"></button></div>
+       <div class="answers"><button class="hide" id="answer-two"></button></div>
+       <div class="answers"><button class="hide" id="answer-three"></button></div>
+       <div class="answers"><button class="hide" id="answer-four"></button></div>
 
         <div class="score-form">
             <form class="hide" id="form">
                 <label for="highscore-initials">Enter your name:</label>
                 <input type="text" placeholder="Your name here" name="highscore-initials" id="highscore-initials" />
-                <button  id="submit-score">Submit</button>
+                <button id="submit-score">Submit</button>
             </form>
         </div>
 

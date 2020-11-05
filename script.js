@@ -35,11 +35,6 @@ var clearScores = document.querySelector("#clear");
 
 init();
 
-console.log(window);
-console.log(scoreSheet);
-console.log(goBack);
-console.log(clearScores);
-
 // Event that initializes site
 function init(){
     reset();

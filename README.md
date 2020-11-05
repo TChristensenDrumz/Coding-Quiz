@@ -10,3 +10,8 @@ This project is a simple coding quiz website created as practice for potential c
 * A local scoreboard that stores user scores in local storage, letting users view their highscores any time they reopen the browser.
 * A clear highscores button that lets the user reset their scoreboard. **Use of this button will delete the user's local storage scoreboard.**
 * A sort function that ensures the user's scores are shown in descending order.
+
+## Credits
+https://fonts.google.com/specimen/Syne+Mono?sidebar.open=true&selection.family=Syne+Mono
+
+**Screenshots included in images folder**

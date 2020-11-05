@@ -1,3 +1,11 @@
+/* font-family: 'Syne Mono', monospace; */
+
+body{
+    background-color: black;
+    color: white;
+    font-family: 'Syne Mono', monospace;
+}
+
 #highscore, #code-quiz {
     float: left;
 }
@@ -19,3 +27,27 @@ ul {
     list-style-type: none;
 }
 
+.answers {
+    padding: .5rem;
+}
+
+button {
+    background-color: rgb(0, 31, 168);
+    color: white;
+    border-color:  rgb(2, 19, 95);
+    padding: 1rem 2.5rem;
+    border-width: .3rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#submit-score {
+    padding: 1px 6px;
+    border-width: 2px;
+}
+
+li {
+    background-color: white;
+    color: black;
+    margin-left: 20rem;
+    margin-right: 20rem;
+}
