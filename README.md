@@ -1,4 +1,4 @@
-# Quiz-HW
+# Coding-Quiz
 
 This project is a simple coding quiz website created as practice for potential coding assessments. On this site, when the start button is pressed, a timer starts and the user is presented with multiple choice questions, one after another until all questions are complete. When the user gets a question wrong, the timer decreases by 10 seconds. When all questions are asnwered or the timer reaches 0, the game ends and the user can then enter their name and have their score added to the local scoreboard.
 
